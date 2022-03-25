@@ -1,5 +1,6 @@
 import Weather from "./Weather.js";
 import "./App.css";
+import ReactDOM from "react-dom";
 
 function App() {
   return (
