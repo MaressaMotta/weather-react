@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./Weather.css";
 
 import ReactAnimatedWeather from "react-animated-weather";
 
@@ -11,11 +12,11 @@ export default function Weather() {
   function displayWeather(response) {
     setLoaded(true);
     setWeather({
-      temperature: response.data.main.temp,
-      wind: response.data.wind.speed,
-      humidity: response.data.main.humidity,
+      temperature: 25,
+      wind: 10,
+      humidity: 80,
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
-      description: response.data.weather[0].description,
+      description: "Clear Skies",
     });
   }
   // eslint-disable-next-line no-template-curly-in-string
@@ -29,17 +30,30 @@ export default function Weather() {
   function updateCity(event) {
     setCity(event.target.value);
   }
-  let form = (
-    <form autoComplete="off" onSubmit={handleSubmit}>
-      <input type="search" placeholder="Enter a city.." onChange={updateCity} />
-      <button type="Submit">Search</button>
-    </form>
-  );
 
   if (loaded) {
     return (
       <div className="description">
-        {form} 
+        <form onSubmit={handleSubmit}>
+          <div className="row">
+            <div className="col-9">
+              <input
+                type="search"
+                placeholder="Enter a city.."
+                onChange={updateCity}
+                className="form-control"
+                autoComplete="off"
+              />
+            </div>
+            <div className="col-3">
+              <input
+                type="submit"
+                value="Search"
+                className="btn btn-primary w-100"
+              />
+            </div>
+          </div>
+        </form>
         <h2>
           {" "}
           {Math.round(weather.temperature)}°C in {city}

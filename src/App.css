@@ -14,7 +14,13 @@
 }
 
 .App {
-  background-color: #491845;
+  background: linear-gradient(
+    179.1deg,
+    rgb(247, 238, 238) -1.9%,
+    rgb(247, 202, 201) 44.9%,
+    rgb(145, 168, 208) 96.1%
+  );
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,10 +28,14 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 20px;
+  border: 1px solid #dadde1;
+  border-radius: 5px;
 }
 
-.App-link {
+.App-link a {
   color: #61dafb;
+  margin: 4px auto;
 }
 
 @keyframes App-logo-spin {

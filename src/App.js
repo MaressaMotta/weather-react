@@ -1,6 +1,5 @@
-import React from 'react';
-import Weather from "./Weather.js";
-import ReactDOM from "react-dom";
+import React from "react";
+import Weather from "./Weather";
 
 import "./App.css";
 
@@ -10,7 +9,7 @@ function App() {
       <header className="App">
         <div>
           <h1> React Weather App</h1>
-          
+
           <Weather />
 
           <footer>
@@ -18,7 +17,7 @@ function App() {
             <a
               href="https://github.com/MaressaMotta/weather-react"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               GitHub
             </a>
@@ -30,5 +29,3 @@ function App() {
 }
 
 export default App;
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
