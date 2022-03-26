@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import axios from "axios";
 
-import ReactAnimatedWeather from 'react-animated-weather';
+import ReactAnimatedWeather from "react-animated-weather";
 
 export default function Weather() {
   const [city, setCity] = useState("");
@@ -30,10 +30,8 @@ export default function Weather() {
     setCity(event.target.value);
   }
   let form = (
-    <form onSubmit={handleSubmit}>
-      <input type="search" 
-	  placeholder="Enter a city.." 
-	  onChange={updateCity} />
+    <form autoComplete="off" onSubmit={handleSubmit}>
+      <input type="search" placeholder="Enter a city.." onChange={updateCity} />
       <button type="Submit">Search</button>
     </form>
   );
@@ -41,7 +39,7 @@ export default function Weather() {
   if (loaded) {
     return (
       <div className="description">
-        {form}
+        {form} 
         <h2>
           {" "}
           {Math.round(weather.temperature)}°C in {city}
