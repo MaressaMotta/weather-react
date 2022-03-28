@@ -6,24 +6,39 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <header className="App">
-        <div>
+        <div className="container">
           <h1> React Weather App</h1>
 
           <Weather />
 
           <footer>
-            Open sourced on
+            This project was coded by{" "}
+            <a
+              href="https://gifted-knuth-1c773c.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Maressa Motta
+            </a>{" "}
+            and is{" "}
             <a
               href="https://github.com/MaressaMotta/weather-react"
               target="_blank"
               rel="noopener noreferrer"
             >
-              GitHub
+              open-sourced on GitHub
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://glowing-frangollo-54b3c8.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              hosted on Netlify
             </a>
           </footer>
         </div>
-      </header>
+      
     </div>
   );
 }
