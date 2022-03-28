@@ -1,48 +1,56 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
+import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 
 import ReactAnimatedWeather from "react-animated-weather";
 
-export default function Weather() {
-  const [city, setCity] = useState("");
-  const [loaded, setLoaded] = useState(false);
-  const [weather, setWeather] = useState({});
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
 
-  function displayWeather(response) {
-    setLoaded(true);
-    setWeather({
-      temperature: 25,
-      wind: 10,
-      humidity: 80,
-      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
-      description: "Clear Skies",
+  function handleResponse(response) {
+    setWeatherData({
+      ready: true,
+      coordinates: response.data.coord,
+      temperature: response.data.main.temp,
+      humidity: response.data.main.humidity,
+      date: new Date(response.data.dt * 1000),
+      description: response.data.weather[0].description,
+      icon: response.data.weather[0].icon,
+      wind: response.data.wind.speed,
+      city: response.data.name,
     });
   }
-  // eslint-disable-next-line no-template-curly-in-string
+
   function handleSubmit(event) {
     event.preventDefault();
-    let apiKey = "31fe610defa048ce46128f578b9c1411";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayWeather);
+    search();
   }
 
-  function updateCity(event) {
+  function handleCityChange(event) {
     setCity(event.target.value);
   }
 
-  if (loaded) {
+  function search() {
+    const apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  if (weatherData.ready) {
     return (
-      <div className="description">
+      <div className="Weather">
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-9">
               <input
                 type="search"
                 placeholder="Enter a city.."
-                onChange={updateCity}
                 className="form-control"
-                autoComplete="off"
+                autoFocus="on"
+                onChange={handleCityChange}
               />
             </div>
             <div className="col-3">
@@ -54,22 +62,12 @@ export default function Weather() {
             </div>
           </div>
         </form>
-        <h2>
-          {" "}
-          {Math.round(weather.temperature)}°C in {city}
-        </h2>
-
-        <ul>
-          <li> {weather.description}</li>
-          <li> Humidity: {weather.humidity}%</li>
-          <li> Wind: {weather.wind}km/h</li>
-          <li>
-            <img src={weather.icon} alt={weather.description} />
-          </li>
-        </ul>
+        <WeatherInfo data={weatherData} />
+        <WeatherForecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {
+    search();
     return (
       <ReactAnimatedWeather
         icon="CLEAR_DAY"
