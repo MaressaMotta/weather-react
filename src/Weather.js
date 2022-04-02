@@ -47,7 +47,7 @@ export default function Weather(props) {
           {" "}
           {Math.round(weather.temperature)}°C in {city}
         </h2>
-
+        <WeatherInfo />
         <ul>
           <li> {weather.description}</li>
           <li> Humidity: {weather.humidity}%</li>
@@ -56,6 +56,7 @@ export default function Weather(props) {
             <img src={weather.icon} alt={weather.description} />
           </li>
         </ul>
+        <WeatherForecast />
       </div>
     );
   } else {
@@ -66,7 +67,6 @@ export default function Weather(props) {
           color="gold"
           size="55"
           animate={true}
-         
         />
         {form}
       </div>

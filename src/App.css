@@ -1,8 +1,15 @@
+:root {
+  --default-font: "Cabin Sketch", cursive;
+  --primary-color: rgb(145, 168, 208);
+  --secondary-color: #ffc0cb;
+}
 h1 {
   text-align: center;
   color: rgb(145, 168, 208);
+  font-family: var(--default-font);
 }
 footer {
+  font: var(--default-font);
   text-align: center;
   margin-top: 300px;
 }
