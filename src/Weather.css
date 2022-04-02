@@ -1,11 +1,10 @@
-
-
 button {
-    color: white;
+  color: white;
   background-color: pink;
   border: powderblue;
 }
 ul {
+  text-align: center;
   margin: 0;
   padding: 0;
 }
@@ -23,4 +22,14 @@ li {
 
 li:first-letter {
   text-transform: capitalize;
+}
+.description {
+  text-align: center;
+}
+.icon {
+  text-align: center;
+  margin: 40px auto;
+}
+form {
+  text-align: center;
 }
