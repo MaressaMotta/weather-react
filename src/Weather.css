@@ -2,6 +2,8 @@ button {
   color: white;
   background-color: pink;
   border: powderblue;
+  margin: 10px auto;
+  padding: 4px 16px;
 }
 ul {
   text-align: center;
@@ -25,10 +27,10 @@ li:first-letter {
 }
 .description {
   text-align: center;
+  color: rgb(145, 168, 208);
 }
 .icon {
   text-align: center;
-  margin: 40px auto;
 }
 form {
   text-align: center;
