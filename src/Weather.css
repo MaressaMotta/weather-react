@@ -1,9 +1,33 @@
+:root {
+  --default-font: "Cabin Sketch", cursive;
+  --primary-color: rgb(145, 168, 208);
+  --secondary-color: #ffc0cb;
+}
+.description {
+  font-family: var(--default-font);
+  border: 1px solid var(--secondary-color);
+  padding: 16px;
+  margin: 30px auto;
+  max-width: 500px;
+  border-radius: 4px;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+
 button {
   color: white;
-  background-color: #ffc0cb;
+  background-color: var(--secondary-color);
   border: powderblue;
   margin: 10px auto;
   padding: 4px 16px;
+  width: 100px;
+}
+h2{
+  margin: 0;
+  font-size: 24px;
+  font-weight: 100;
+  line-height: 29px;
 }
 ul {
   text-align: center;
@@ -16,7 +40,7 @@ li {
   margin: 0;
   padding: 0;
 
-  color: rgb(145, 168, 208);
+  color: var(--primary-color);
   font-size: 16px;
   font-weight: 100;
   line-height: 19px;
@@ -25,13 +49,11 @@ li {
 li:first-letter {
   text-transform: capitalize;
 }
-.description {
-  text-align: center;
-  color: rgb(145, 168, 208);
-}
+
 .icon {
   text-align: center;
 }
 form {
   text-align: center;
+  margin-bottom: 20px;
 }

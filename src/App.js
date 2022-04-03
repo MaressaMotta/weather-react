@@ -9,7 +9,7 @@ function App() {
         <div className="container">
           <h1> React Weather App</h1>
 
-          <Weather />
+          <Weather defaultCity="Dublin" />
 
           <footer>
             This project was coded by{" "}

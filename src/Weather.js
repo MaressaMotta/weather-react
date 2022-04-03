@@ -35,31 +35,50 @@ export default function Weather(props) {
   let form = (
     <form autoComplete="off" onSubmit={handleSubmit}>
       <input type="search" placeholder="Enter a city.." onChange={updateCity} />
-      <button type="Submit">Search</button>
+      <button type="Submit" className="w-100">
+        Search
+      </button>
     </form>
   );
 
   if (loaded) {
     return (
       <div className="description">
-        {form}
+        <form autoComplete="off" onSubmit={handleSubmit}>
+          <input
+            type="search"
+            placeholder="Enter a city.."
+            onChange={updateCity}
+          />
+          <button type="Submit" className="w-100">
+            Search
+          </button>
+        </form>
         <h2>
           {" "}
-          {Math.round(weather.temperature)}°C in {city}
+          {Math.round(weather.temperature)}
+          °C in {city}
         </h2>
-        <WeatherInfo />
+
         <ul>
           <li> {weather.description}</li>
           <li> Humidity: {weather.humidity}%</li>
           <li> Wind: {weather.wind}km/h</li>
           <li>
-            <img src={weather.icon} alt={weather.description} />
+            <img
+              src={weather.icon}
+              alt={weather.description}
+              className="float"
+            />
           </li>
         </ul>
-        <WeatherForecast />
       </div>
     );
   } else {
+    const apiKey = "31fe610defa048ce46128f578b9c1411";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?
+    q=${props.defaultCity}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayWeather);
     return (
       <div className="icon mb-5">
         <ReactAnimatedWeather

@@ -3,13 +3,19 @@
   --primary-color: rgb(145, 168, 208);
   --secondary-color: #ffc0cb;
 }
+App {
+  max-width: 600px;
+  margin: 30 auto;
+}
 h1 {
   text-align: center;
   color: rgb(145, 168, 208);
   font-family: var(--default-font);
 }
 footer {
+  font-size: 11px;
   font: var(--default-font);
   text-align: center;
   margin-top: 300px;
+  color: rgb(145, 168, 208);
 }
