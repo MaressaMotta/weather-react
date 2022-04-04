@@ -8,27 +8,31 @@ import ReactAnimatedWeather from "react-animated-weather";
 import FormattedDate from "./FormattedDate";
 
 export default function Weather(props) {
-  const [city, setCity] = useState("");
-  const [loaded, setLoaded] = useState(false);
-  const [weather, setWeather] = useState({});
+  const [city, setCity] = useState(props.defaultCity);
+
+  const [weather, setWeather] = useState({ ready: false });
 
   function displayWeather(response) {
-    setLoaded(true);
     setWeather({
+      ready: true,
       temperature: response.data.main.temp,
       wind: response.data.wind.speed,
       humidity: response.data.main.humidity,
-      date: new Date(response.data.dt*1000),
+      date: new Date(response.data.dt * 1000),
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       description: response.data.weather[0].description,
+      city: response.data.name,
     });
+  }
+  function search() {
+    let apiKey = "31fe610defa048ce46128f578b9c1411";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayWeather);
   }
   // eslint-disable-next-line no-template-curly-in-string
   function handleSubmit(event) {
     event.preventDefault();
-    let apiKey = "31fe610defa048ce46128f578b9c1411";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayWeather);
+    search();
   }
 
   function updateCity(event) {
@@ -43,7 +47,7 @@ export default function Weather(props) {
     </form>
   );
 
-  if (loaded) {
+  if (weather.ready) {
     return (
       <div className="description">
         <form autoComplete="off" onSubmit={handleSubmit}>
@@ -56,34 +60,17 @@ export default function Weather(props) {
             Search
           </button>
         </form>
-        <h2>
-          {" "}
-          {Math.round(weather.temperature)}
-          °C in {city}
-        </h2>
-
+        <WeatherInfo data={setWeather} />
+        <WeatherForecast coordinates={weather.coordinates} />
         <ul>
-          <li> 
-            <FormattedDate date={setWeather.date}/>
-          </li>
-          <li> {weather.description}</li>
-          <li> Humidity: {weather.humidity}%</li>
-          <li> Wind: {weather.wind}km/h</li>
           <li>
-            <img
-              src={weather.icon}
-              alt={weather.description}
-              className="float"
-            />
+            <FormattedDate date={setWeather.date} />
           </li>
-        </ul>
+          </ul>
       </div>
     );
   } else {
-    const apiKey = "31fe610defa048ce46128f578b9c1411";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?
-    q=${props.defaultCity}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayWeather);
+    search();
     return (
       <div className="icon mb-5">
         <ReactAnimatedWeather
