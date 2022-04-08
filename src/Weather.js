@@ -4,8 +4,8 @@ import "./Weather.css";
 import WeatherInfo from "./WeatherInfo";
 import WeatherForecast from "./WeatherForecast";
 
-import ReactAnimatedWeather from "react-animated-weather";
-import FormattedDate from "./FormattedDate";
+
+
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
