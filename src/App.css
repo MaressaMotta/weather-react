@@ -3,9 +3,15 @@
   --primary-color: rgb(145, 168, 208);
   --secondary-color: #ffc0cb;
 }
-App {
+App .wrapper-container{
   max-width: 600px;
   margin: 30 auto;
+  background-color: rgba(171,216,198,.497);
+    border: solid;
+    border-color: #1c7696;
+    border-radius: 50px;
+    font-family: PT mono,monospace;
+    padding: 30px 30px 10px;
 }
 h1 {
   text-align: center;

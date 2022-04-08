@@ -6,7 +6,7 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-        <div className="container">
+        <div className="wrapper-container">
           <h1> React Weather App</h1>
 
           <Weather defaultCity="Dublin" />

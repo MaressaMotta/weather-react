@@ -13,7 +13,9 @@
   text-align: center;
   color: var(--primary-color);
 }
-
+.Weather canvas {
+  margin: 10px auto;
+}
 
 button {
   color: white;

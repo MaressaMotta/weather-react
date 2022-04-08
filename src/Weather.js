@@ -19,7 +19,7 @@ export default function Weather(props) {
       wind: response.data.wind.speed,
       humidity: response.data.main.humidity,
       date: new Date(response.data.dt * 1000),
-      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      icon: response.data.weather[0].icon,
       description: response.data.weather[0].description,
       city: response.data.name,
     });
@@ -50,37 +50,29 @@ export default function Weather(props) {
   if (weather.ready) {
     return (
       <div className="description">
-        <form autoComplete="off" onSubmit={handleSubmit}>
+        <form  onSubmit={handleSubmit}
+        className="search-form">
           <input
             type="search"
             placeholder="Enter a city.."
+            className="form-control"
+            autoFocus="on"
             onChange={updateCity}
           />
-          <button type="Submit" className="w-100">
-            Search
-          </button>
+          <input
+            type="submit"
+            value="Search"
+            className="btn btn-primary w-100"
+          />
         </form>
-        <WeatherInfo data={setWeather} />
+        <WeatherInfo data={weather} />
         <WeatherForecast coordinates={weather.coordinates} />
-        <ul>
-          <li>
-            <FormattedDate date={setWeather.date} />
-          </li>
-          </ul>
+        
       </div>
     );
   } else {
     search();
-    return (
-      <div className="icon mb-5">
-        <ReactAnimatedWeather
-          icon="CLEAR_DAY"
-          color="gold"
-          size="55"
-          animate={true}
-        />
-        {form}
-      </div>
-    );
+    return "Loading...";
+        
   }
 }
