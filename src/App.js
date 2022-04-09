@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
         <div className="wrapper-container">
-          <h1> React Weather App</h1>
+          <h1> Your Weather App</h1>
 
           <Weather defaultCity="Dublin" />
 

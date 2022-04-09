@@ -22,6 +22,7 @@ export default function Weather(props) {
       icon: response.data.weather[0].icon,
       description: response.data.weather[0].description,
       city: response.data.name,
+      coordinates: response.data.coord,
     });
   }
   function search() {
@@ -52,18 +53,23 @@ export default function Weather(props) {
       <div className="description">
         <form  onSubmit={handleSubmit}
         className="search-form">
+          <div className="row">
+            <div className="col-6">
           <input
             type="search"
             placeholder="Enter a city.."
             className="form-control"
             autoFocus="on"
             onChange={updateCity}
-          />
+          /></div>
+          <div className="col-6">
           <input
             type="submit"
             value="Search"
-            className="btn btn-primary w-100"
+            className="btn w-100"
           />
+          </div>
+          </div>
         </form>
         <WeatherInfo data={weather} />
         <WeatherForecast coordinates={weather.coordinates} />

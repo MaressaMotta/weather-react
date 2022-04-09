@@ -17,7 +17,7 @@
   margin: 10px auto;
 }
 
-button {
+.btn {
   color: white;
   background-color: var(--secondary-color);
   border: powderblue;
