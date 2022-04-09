@@ -1,7 +1,7 @@
 :root {
   --default-font: "Cabin Sketch", cursive;
-  --primary-color: rgb(145, 168, 208);
-  --secondary-color: #ffc0cb;
+  --primary-color: #91a8d0;
+  --secondary-color: #996472;
 }
 .description {
   font-family: var(--default-font);
@@ -12,6 +12,7 @@
   border-radius: 4px;
   text-align: center;
   color: var(--primary-color);
+  background-color: #F4F9FF;
 }
 .Weather canvas {
   margin: 10px auto;
